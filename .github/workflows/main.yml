@@ -39,12 +39,13 @@ jobs:
       - name: Download IP files -1
         run: |
            wget -O NT.txt https://raw.springroll.uk/tonyshaoxu/udpxy-NTDX/refs/heads/main/outputs/list?token=private
-	   cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
+           cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
 
       # 下载IP文件2
       - name: Download IP files -2
-	   wget -O SH.txt https://raw.springroll.uk/tonyshaoxu/udpxy-SHDX/refs/heads/main/outputs/list?token=private
-	   cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
+        run: |
+         wget -O SH.txt https://raw.springroll.uk/tonyshaoxu/udpxy-SHDX/refs/heads/main/outputs/list?token=private
+         cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
         
       # Runs a single command using the runners shell
       - name: Run a one-line script
