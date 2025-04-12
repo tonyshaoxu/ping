@@ -51,8 +51,8 @@ jobs:
       - name: Run a one-line script
         run: | 
            chmod +x ping_filter.sh
-           ./ping_filter.sh ip_NT.txt 15 NT_result.txt
-           ./ping_filter.sh ip_SH.txt 15 SH_result.txt
+           ./ping_filter.sh ip_NT.txt 200 NT_result.txt
+           ./ping_filter.sh ip_SH.txt 200 SH_result.txt
            rm -f ./outputs/*
            mv NT_result.txt SH_result.txt ./outputs
 
