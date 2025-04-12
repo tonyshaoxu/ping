@@ -38,13 +38,13 @@ jobs:
       # 下载IP文件1
       - name: Download IP files -1
         run: |
-           wget -O NT.txt https://raw.seagulls.eu.org/tonyshaoxu/udpxy-NTDX/refs/heads/main/outputs/success_ips.txt?token=private
+           wget -O NT.txt https://token=xxxxx
            cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
 
       # 下载IP文件2
       - name: Download IP files -2
         run: |
-         wget -O SH.txt https://raw.seagulls.eu.org/tonyshaoxu/udpxy-SHDX/refs/heads/main/outputs/success_ips.txt?token=private
+         wget -O SH.txt https://token=xxxxx
          cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
         
       # Runs a single command using the runners shell
