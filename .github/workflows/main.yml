@@ -5,13 +5,13 @@ name: ping
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  #push:
+  #  branches: [ "main" ]
+  #pull_request:
+  #  branches: [ "main" ]
     
-  schedule:
-    - cron: '0 16 * * *' # 每天 UTC 时间 16:00 执行‌:ml-citation{ref="3" data="citationList"}
+  #schedule:
+  #  - cron: '0 16 * * *' # 每天 UTC 时间 16:00 执行‌:ml-citation{ref="3" data="citationList"}
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -38,13 +38,13 @@ jobs:
       # 下载IP文件1
       - name: Download IP files -1
         run: |
-           wget -O NT.txt https://raw.seagulls.eu.org/tonyshaoxu/udpxy-NTDX/refs/heads/main/outputs/list?token=private
+           wget -O NT.txt https://raw/udpxy-NTDX/refs/heads/main/outputs/list?token=xxxx
            cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
 
       # 下载IP文件2
       - name: Download IP files -2
         run: |
-         wget -O SH.txt https://raw.seagulls.eu.org/tonyshaoxu/udpxy-SHDX/refs/heads/main/outputs/list?token=private
+         wget -O SH.txt https://raw/udpxy-SHDX/refs/heads/main/outputs/list?token=xxxx
          cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
         
       # Runs a single command using the runners shell
