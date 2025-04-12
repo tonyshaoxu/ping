@@ -1,0 +1,63 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ping
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+  schedule:
+    - cron: '0 16 * * *' # 每天 UTC 时间 16:00 执行‌:ml-citation{ref="3" data="citationList"}
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+        with:
+      # 启用权限，避免推送失败
+          persist-credentials: true
+
+      # 创建目标目录（如果不存在）
+      - name: Create target directory
+        run: mkdir -p ./outputs 
+        
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: | 
+           chmod +x ping_filter.sh
+           wget -O NT.txt https://raw.springroll.uk/tonyshaoxu/udpxy-NTDX/refs/heads/main/outputs/list?token=private
+           wget -O SH.txt https://raw.springroll.uk/tonyshaoxu/udpxy-SHDX/refs/heads/main/outputs/list?token=private
+	   cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
+	   cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
+           ./ping_filter.sh ip_NT.txt 15 NT_result.txt
+           ./ping_filter.sh ip_SH.txt 15 SH_result.txt
+           rm -f ./outputs/*
+           mv NT_result.txt SH_result.txt ./outputs
+
+           
+      - name: Commit all files
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "无文件变动，跳过提交"
+            exit 0  # 无错误退出
+          else
+            git config --global user.name "GitHub Actions Bot"
+            git config --global user.email "actions@github.com"
+            git add ./outputs
+            git commit -m "Auto-commit generated file [skip ci]"
+            git push
+          fi
