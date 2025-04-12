@@ -36,25 +36,27 @@ jobs:
         run: mkdir -p ./outputs 
 
       # 下载IP文件1
-      - name: Download IP files -1
-        run: |
-           wget -O NT.txt https://token=xxxxx
-           cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
+      #- name: Download IP files -1
+      #  run: |
+      #     wget -O NT.txt https://token=xxxxx
+      #     cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
 
       # 下载IP文件2
-      - name: Download IP files -2
-        run: |
-         wget -O SH.txt https://token=xxxxx
-         cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
+      #- name: Download IP files -2
+      #  run: |
+      #   wget -O SH.txt https://token=xxxxx
+      #   cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
         
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: | 
            chmod +x ping_filter.sh
-           ./ping_filter.sh ip_NT.txt 20 NT_result.txt
-           ./ping_filter.sh ip_SH.txt 20 SH_result.txt
+           ./ping_filter.sh test.txt 20 ping_result.txt
+      #     ./ping_filter.sh ip_NT.txt 20 NT_result.txt
+      #     ./ping_filter.sh ip_SH.txt 20 SH_result.txt
            rm -f ./outputs/*
-           mv NT_result.txt SH_result.txt ./outputs
+      #     mv NT_result.txt SH_result.txt ./outputs
+           mv ping_result.txt ./outputs
 
            
       - name: Commit all files
