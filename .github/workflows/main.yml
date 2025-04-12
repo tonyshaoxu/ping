@@ -35,25 +35,13 @@ jobs:
       - name: Create target directory
         run: mkdir -p ./outputs 
 
-      # 下载IP文件1
-      #- name: Download IP files -1
-      #  run: |
-      #     wget -O NT.txt https://token=xxxxx
-      #     cat NT.txt | awk -F ":" '{print $1}' > ip_NT.txt
-
-      # 下载IP文件2
-      #- name: Download IP files -2
-      #  run: |
-      #   wget -O SH.txt https://token=xxxxx
-      #   cat SH.txt | awk -F ":" '{print $1}' > ip_SH.txt
-        
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: | 
            chmod +x ping_filter.sh
-           ./ping_filter.sh test.txt 20 ping_result.txt
+           ./ping_filter.sh test.txt 20
            rm -f ./outputs/*
-           mv ping_result.txt ./outputs
+           mv *.txt ./outputs
 
            
       - name: Commit all files
