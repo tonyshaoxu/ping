@@ -40,7 +40,7 @@ jobs:
         run: | 
            python3 subnets.py > subnets.txt
            rm -f ./outputs/*
-           mv *.txt ./outputs
+           mv subnets.txt ./outputs
 
            
       - name: Commit all files
