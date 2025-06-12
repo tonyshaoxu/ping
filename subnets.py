@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # source: https://www.wltechlab.top:8998/archives/1682  https://lxnchan.cn/wireguard-exclude-ips.html
+# online editor https://www.runoob.com/try/runcode.php?filename=HelloWorld&type=python3
 
 from ipaddress import ip_network
 
