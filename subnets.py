@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# source: https://www.wltechlab.top:8998/archives/1682
+# source: https://www.wltechlab.top:8998/archives/1682  https://lxnchan.cn/wireguard-exclude-ips.html
 
 from ipaddress import ip_network
 
