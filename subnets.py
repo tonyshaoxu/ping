@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# source: https://www.wltechlab.top:8998/archives/1682
 
 from ipaddress import ip_network
 
