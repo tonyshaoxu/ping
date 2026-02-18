@@ -1,6 +1,8 @@
 
 import ipaddress
 
+# 192.168.0.0/16排除掉192.168.123.0/24
+
 def exclude_subnet(base_network, exclude_network):
     base = ipaddress.ip_network(base_network)
     exclude = ipaddress.ip_network(exclude_network)
